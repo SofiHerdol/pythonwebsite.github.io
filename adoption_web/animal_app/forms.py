@@ -11,8 +11,8 @@ class AnimalForm(forms.Form):
 class ShelterForm(forms.Form):
     shelter_choices = (
         ("Refugio" , "Refugio"),
-        ("casa de tránsito" , "casa de tránsito"),
-        ("otros", "otros"),
+        ("Casa de tránsito" , "Casa de tránsito"),
+        ("Otro", "Otro"),
     )
     name = forms.CharField(max_length=100)
     street = forms.CharField(max_length=100)
@@ -22,7 +22,12 @@ class ShelterForm(forms.Form):
     shelter_type = forms.ChoiceField(choices=shelter_choices)
 
 class PersonForm(forms.Form):
+    house_choices = (
+        ("Casa" , "Casa"),
+        ("Departamento" , "Departamento"),
+        ("Otro", "Otro"),
+    )
     name = forms.CharField(max_length=100)
     age = forms.IntegerField()
     dni = forms.IntegerField()
-    house = forms.CharField(max_length=50)
+    house = forms.ChoiceField(choices=house_choices)

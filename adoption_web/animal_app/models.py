@@ -19,6 +19,7 @@ class AnimalShelter(models.Model):
     number= models.FloatField()
     postal_code = models.FloatField()
     province = models.CharField(max_length=100)
+    shelter_type = models.CharField(max_length=50)
 
     def __str__(self):
         return self.name
@@ -27,7 +28,7 @@ class Person(models.Model):
     name = models.CharField(max_length=100)
     age = models.IntegerField()
     dni = models.IntegerField()
-    house = models.CharField(max_length=50)
+    house_type = models.CharField(max_length=50)
 
 
     def __str__(self):

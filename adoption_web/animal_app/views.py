@@ -43,3 +43,60 @@ def animal_list(request):
         "adoptions":all_animals,
     }
     return render(request, "animal-list.html", context = context)
+
+def create_shelter(request):
+    if request.method == "GET":
+        context = {
+            "form": ShelterForm()
+        }
+        return render(request, "create-shelter.html", context=context)
+    elif request.method == "POST":
+        form = ShelterForm(request.POST)
+        if form.is_valid():
+            AnimalShelter.objects.create(
+                name = form.cleaned_data["name"],
+                street = form.cleaned_data["street"],
+                number= form.cleaned_data["number"],
+                postal_code = form.cleaned_data["postal_code"],
+                province = form.cleaned_data["province"],
+                shelter_type = form.cleaned_data["shelter_type"],
+            )
+            context = {
+                "message": "¡Refugio creado!"
+            }
+            return render(request, "create-shelter.html", context=context)
+        else:
+            context = {
+                "form_errors": form.errors,
+                "form": ShelterForm()
+            }
+            return render(request, "create-shelter.html", context=context)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

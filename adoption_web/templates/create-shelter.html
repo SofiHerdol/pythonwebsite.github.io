@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 
 {% block title %}
-    Inicio
+    Creador de Refugios
 {% endblock %}
 
 {% block content %}
-    <h1 style="color:rgb(0, 0, 0)">¡Bienvenido a nuestro programa de adopción!</h1>
+    <h1 style="color:rgb(0, 0, 0)">¡Bienvenido a nuestro creador de refugios!</h1>
 
     {% if form %}
         <form action="" method="POST">
             {% csrf_token %}
             {{form.as_table}}
-            <input type="submit" value="Crear Aviso">
+            <input type="submit" value="Crear Refugio">
         </form>
     {% endif %}
 
