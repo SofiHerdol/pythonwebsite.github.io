@@ -16,8 +16,8 @@ class Animals(models.Model):
 class AnimalShelter(models.Model):
     name = models.CharField(max_length=100)
     street = models.CharField(max_length=100)
-    number= models.FloatField()
-    postal_code = models.FloatField()
+    number= models.IntegerField()
+    postal_code = models.IntegerField()
     province = models.CharField(max_length=100)
     shelter_type = models.CharField(max_length=50)
 

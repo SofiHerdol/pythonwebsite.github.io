@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Creador de Perfiles
+{% endblock %}
+
+{% block content %}
+    <h1 style="color:rgb(0, 0, 0)">¡Bienvenido a nuestro creador de perfiles!</h1>
+
+    {% if form %}
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{form.as_table}}
+            <input type="submit" value="Crear Perfil">
+        </form>
+    {% endif %}
+
+    {% if form_errors %}
+    <h2 style="color: red;"> Errores: </h2>
+    {{form_errors}}
+    {% endif %}
+
+    {% if message %}
+        <h2 style="color: green;"> {{message}} </h2>
+    {% endif %}
+
+{% endblock %}

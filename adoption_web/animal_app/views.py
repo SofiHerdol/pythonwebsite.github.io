@@ -72,8 +72,42 @@ def create_shelter(request):
             }
             return render(request, "create-shelter.html", context=context)
 
+def shelter_list(request):
+    if "search" in request.GET:
+        search = request.GET["search"]
+        all_shelters = AnimalShelter.objects.filter(name_icontains=search)
+    else:
+        all_shelters = AnimalShelter.objects.all()
+    context = {
+        "shelters":all_shelters,
+    }
+    return render(request, "shelter-list.html", context = context)
 
-
+def create_profile(request):
+    if request.method == "GET":
+        context = {
+            "form": PersonForm()
+        }
+        return render(request, "create-profile.html", context=context)
+    elif request.method == "POST":
+        form = PersonForm(request.POST)
+        if form.is_valid():
+            Person.objects.create(
+                name = form.cleaned_data["name"],
+                age = form.cleaned_data["age"],
+                dni= form.cleaned_data["dni"],
+                house_type = form.cleaned_data["house_type"],
+            )
+            context = {
+                "message": "¡Perfil creado!"
+            }
+            return render(request, "create-profile.html", context=context)
+        else:
+            context = {
+                "form_errors": form.errors,
+                "form": PersonForm()
+            }
+            return render(request, "create-profile.html", context=context)
 
 
 

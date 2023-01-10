@@ -1,0 +1,28 @@
+{% extends "base.html" %}    
+
+
+{% block title %}      
+    Lista de Refugios
+{% endblock %}   
+
+{% block content %}
+
+    <h1> ¡Bienvenido a la lista de refugios!</h1>     
+    <h2>Agregar nuevo refugio</h2> <a href="/create-shelter/" class="btn btn-primary">Crear</a>  
+    
+    {% for shelter in shelters %}
+    <div class="card text-bg-secondary mb-2" style="max-width: 16rem;">     
+        <div class="card-body">     
+
+        <p> {{shelter.name}} </p>     
+        <p> {{shelter.street}} </p>      
+        <p> {{shelter.number}} </p>   
+        <p> {{shelter.postal_code}} </p>   
+        <p> {{shelter.province}} </p>   
+        <p> {{shelter.shelter_type}} </p>     
+
+        </div>
+    </div>
+    {% endfor %}
+
+{% endblock %}
