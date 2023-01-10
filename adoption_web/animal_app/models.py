@@ -14,7 +14,7 @@ class AnimalShelter(models.Model):
     number= models.FloatField()
     postal_code = models.FloatField()
     province = models.CharField(max_length=100)
-    contact_number = models.FloatField(default="1112344321")
+    contact_number = models.FloatField()
 
 class Person(models.Model):
     name = models.CharField(max_length=100)
