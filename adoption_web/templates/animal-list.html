@@ -1,0 +1,31 @@
+{% extends "base.html" %}    
+
+
+{% block title %}      
+    Lista de Adopciones  
+{% endblock %}   
+
+{% block content %}
+
+    <h1> ¡Bienvenido a la lista de adopciones!</h1>     
+    <h2>Agregar nuevo aviso </h2> <a href="/putup-adoption/" class="btn btn-primary">Crear</a>  
+    
+    {% for animal in adoptions %}
+
+    <div class="card text-bg-secondary mb-2" style="max-width: 16rem;">     
+        <div class="card-body">     
+
+        <p>Su nombre es: {{animal.name}} </p>     
+        <p>Su edad es: {{animal.age}} años</p>        
+
+        {% if animal.adopted == True %}
+        <p>¡Todavía está buscando hogar!</p>
+        {% else %}
+        <p>¡Ya fue adoptado!</p>
+        {% endif %}
+
+        </div>
+    </div>
+    {% endfor %}
+
+{% endblock %}
