@@ -1,10 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from animal_app.forms import AnimalForm
-from animal_app.models import Animals
+from animal_app.forms import AnimalForm, ShelterForm, PersonForm
+from animal_app.models import Animals, AnimalShelter, Person
+# Create your views here.
 
-def index_hi(request):
-    return render(request, "index.html", context={})
 
 def put_up_for_adoption(request):
     if request.method == "GET":
@@ -12,13 +10,17 @@ def put_up_for_adoption(request):
             "form": AnimalForm()
         }
         return render(request, "putup-adoption.html", context=context)
+
     elif request.method == "POST":
         form = AnimalForm(request.POST)
         if form.is_valid():
             Animals.objects.create(
                 name = form.cleaned_data["name"],
                 age = form.cleaned_data["age"],
+                adopted = form.cleaned_data["adopted"],
                 breed = form.cleaned_data["breed"],
+                exotic = form.cleaned_data["exotic"],
+                baby = form.cleaned_data["baby"],
             )
             context = {
                 "message": "¡Aviso creado!"
@@ -41,8 +43,3 @@ def animal_list(request):
         "adoptions":all_animals,
     }
     return render(request, "animal-list.html", context = context)
-
-
-
-
-

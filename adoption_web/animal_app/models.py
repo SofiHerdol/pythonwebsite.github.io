@@ -1,12 +1,17 @@
 from django.db import models
 
+# Create your models here.
+
 class Animals(models.Model):
     name = models.CharField(max_length=100)
-    age = models.FloatField(max_length=3)
+    age = models.IntegerField()
     adopted = models.BooleanField(default=False)
     breed = models.CharField(max_length=100)
     exotic = models.BooleanField(default=False)
     baby = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.name
 
 class AnimalShelter(models.Model):
     name = models.CharField(max_length=100)
@@ -14,16 +19,15 @@ class AnimalShelter(models.Model):
     number= models.FloatField()
     postal_code = models.FloatField()
     province = models.CharField(max_length=100)
-    contact_number = models.FloatField()
+
+    def __str__(self):
+        return self.name
 
 class Person(models.Model):
     name = models.CharField(max_length=100)
-    age = models.FloatField(max_length=3)
-    dni = models.FloatField(max_length=15)
+    age = models.IntegerField()
+    dni = models.IntegerField()
     house = models.CharField(max_length=50)
-
-
-
 
 
     def __str__(self):
