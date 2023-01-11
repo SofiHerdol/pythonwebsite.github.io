@@ -17,7 +17,6 @@ def put_up_for_adoption(request):
             Animals.objects.create(
                 name = form.cleaned_data["name"],
                 age = form.cleaned_data["age"],
-                adopted = form.cleaned_data["adopted"],
                 breed = form.cleaned_data["breed"],
                 exotic = form.cleaned_data["exotic"],
                 baby = form.cleaned_data["baby"],

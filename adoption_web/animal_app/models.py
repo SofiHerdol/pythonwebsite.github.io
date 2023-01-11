@@ -5,7 +5,7 @@ from django.db import models
 class Animals(models.Model):
     name = models.CharField(max_length=100)
     age = models.IntegerField()
-    adopted = models.BooleanField(default=False)
+    adopted = models.BooleanField(default=True)
     breed = models.CharField(max_length=100)
     exotic = models.BooleanField(default=False)
     baby = models.BooleanField(default=False)

@@ -15,7 +15,14 @@
         <div class="card-body">     
 
         <p>Su nombre es: {{animal.name}} </p>     
-        <p>Su edad es: {{animal.age}} años</p>        
+        <p>Su edad es: {{animal.age}} años</p>    
+        <p>Es un/una {{animal.breed}} </p> 
+
+        {% if animal.exotic == True %}
+        <p> Cuidado, es un animal exótico. </p>
+        {% else %}
+            
+        {% endif %}
 
         {% if animal.adopted == True %}
         <p>¡Todavía está buscando hogar!</p>

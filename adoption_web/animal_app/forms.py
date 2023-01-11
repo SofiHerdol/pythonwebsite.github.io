@@ -3,10 +3,9 @@ from django import forms
 class AnimalForm(forms.Form):
     name = forms.CharField(max_length=100)
     age = forms.IntegerField()
-    adopted = forms.BooleanField()
     breed = forms.CharField(max_length=100)
     exotic = forms.BooleanField()
-    baby = forms.BooleanField()
+    baby = forms.BooleanField(required=False)
 
 class ShelterForm(forms.Form):
     shelter_choices = (
