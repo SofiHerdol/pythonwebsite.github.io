@@ -8,10 +8,11 @@
 {% block content %}
 
     <h1> ¡Bienvenido a la lista de adopciones!</h1>     
-    <h2>Agregar nuevo aviso </h2> <a href="/putup-adoption/" class="btn btn-primary">Crear</a>  
+    <h2>Agregar nuevo aviso </h2> <a href="/putup-adoption/" button type="button" class="btn btn-dark btn-lg">Crear</a>  
+    <p></p>
     
     {% for animal in adoptions %}
-    <div class="card text-bg-secondary mb-2" style="max-width: 16rem;">     
+    <div class="card text-bg-dark mb-3 card border-danger mb-3" style="max-width: 16rem;",>     
         <div class="card-body">     
 
         <p>Su nombre es: {{animal.name}} </p>     

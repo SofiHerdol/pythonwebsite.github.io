@@ -35,7 +35,7 @@ def put_up_for_adoption(request):
 def animal_list(request):
     if "search" in request.GET:
         search = request.GET["search"]
-        all_animals = Animals.objects.filter(name_icontains=search)
+        all_animals = Animals.objects.filter(name__icontains=search)
     else:
         all_animals = Animals.objects.all()
     context = {
