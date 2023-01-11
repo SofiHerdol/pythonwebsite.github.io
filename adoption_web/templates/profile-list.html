@@ -1,0 +1,26 @@
+{% extends "base.html" %}    
+
+
+{% block title %}      
+    Lista de Refugios
+{% endblock %}   
+
+{% block content %}
+
+    <h1> ¡Bienvenido a la lista de perfiles!</h1>     
+    <h2>Agregar nuevo perfil</h2> <a href="/create-profile/" class="btn btn-primary">Crear</a>  
+    
+    {% for profile in profiles %}
+    <div class="card text-bg-secondary mb-2" style="max-width: 16rem;">     
+        <div class="card-body">     
+
+        <p> {{profile.name}} </p>     
+        <p> {{profile.age}} </p>      
+        <p> {{profile.dni}} </p>   
+        <p> {{profile.house_type}} </p>   
+
+        </div>
+    </div>
+    {% endfor %}
+
+{% endblock %}

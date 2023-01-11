@@ -109,7 +109,16 @@ def create_profile(request):
             }
             return render(request, "create-profile.html", context=context)
 
-
+def profile_list(request):
+    if "search" in request.GET:
+        search = request.GET["search"]
+        all_profiles = Person.objects.filter(name_icontains=search)
+    else:
+        all_profiles= Person.objects.all()
+    context = {
+        "profiles":all_profiles,
+    }
+    return render(request, "profile-list.html", context = context)
 
 
 

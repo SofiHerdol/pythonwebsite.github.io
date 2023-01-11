@@ -30,4 +30,4 @@ class PersonForm(forms.Form):
     name = forms.CharField(max_length=100)
     age = forms.IntegerField()
     dni = forms.IntegerField()
-    house = forms.ChoiceField(choices=house_choices)
+    house_type = forms.ChoiceField(choices=house_choices)

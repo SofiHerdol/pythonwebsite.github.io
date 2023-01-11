@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from animal_app.views import animal_list, put_up_for_adoption, create_shelter, shelter_list, create_profile
+from animal_app.views import animal_list, put_up_for_adoption, create_shelter, shelter_list, create_profile, profile_list
 from adoption_web.views import index_hi
 
 urlpatterns = [
@@ -26,4 +26,5 @@ urlpatterns = [
     path("create-shelter/", create_shelter),
     path("shelter-list/", shelter_list),
     path("create-profile/", create_profile),
+    path("profile-list/", profile_list),
 ]
