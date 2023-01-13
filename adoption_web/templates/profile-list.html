@@ -6,9 +6,19 @@
 {% endblock %}   
 
 {% block content %}
+<div class="card text-bg-dark mb-3 card border-light mb-3">
+    <div class="card-body">
+        <h1 style="text-align:center;">¡Bienvenidx a la lista de perfiles!</h1>     
+    </div>
+</div> 
 
-    <h1> ¡Bienvenido a la lista de perfiles!</h1>     
-    <h2>Agregar nuevo perfil</h2> <a href="/create-profile/" button type="button" class="btn btn-dark btn-lg">Crear</a> 
+<div class="card text-bg-dark mb-3 card border-light mb-3">
+    <div class="card-body">
+        <h2 style="text-align:center;"> Agregar nuevo perfil</h2>   
+        <a href="/create-profile/" button type="button" class="btn btn-dark btn-lg">Crear</a> 
+    </div>
+</div> 
+
     <p></p>
     
     {% for profile in profiles %}
