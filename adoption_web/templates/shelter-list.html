@@ -6,10 +6,19 @@
 {% endblock %}   
 
 {% block content %}
+<div class="card text-bg-dark mb-3 card border-light mb-3">
+    <div class="card-body">
+        <h1 style="text-align:center;">¡Bienvenidx a la lista de refugios!</h1>     
+    </div>
+</div> 
 
-    <h1> ¡Bienvenido a la lista de refugios!</h1>     
-    <h2>Agregar nuevo refugio</h2> <a href="/create-shelter/" button type="button" class="btn btn-dark btn-lg">Crear</a>  
-    <p></p>
+<div class="card text-bg-dark mb-3 card border-light mb-3">
+    <div class="card-body">
+        <h1 style="text-align:center;">Agregar un nuevo refugio:</h1>    
+        <a href="/create-shelter/" button type="button" class="btn btn-dark btn-lg">Crear</a>  
+    </div>
+</div> 
+
     
     {% for shelter in shelters %}
     <div class="card text-bg-dark mb-3 card border-danger mb-3" style="max-width: 16rem;">     
