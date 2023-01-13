@@ -1,10 +1,15 @@
 from django import forms
 
 class AnimalForm(forms.Form):
+    gender_choices = (
+        ("Macho" , "Macho"),
+        ("Hembra", "Hembra"),
+    )
     name = forms.CharField(max_length=100)
     age = forms.IntegerField()
+    gender = forms.ChoiceField(choices=gender_choices)
     breed = forms.CharField(max_length=100)
-    exotic = forms.BooleanField()
+    exotic = forms.BooleanField(required=False)
     baby = forms.BooleanField(required=False)
 
 class ShelterForm(forms.Form):
@@ -30,3 +35,7 @@ class PersonForm(forms.Form):
     age = forms.IntegerField()
     dni = forms.IntegerField()
     house_type = forms.ChoiceField(choices=house_choices)
+    contact_number = forms.IntegerField(required=False)
+
+class NewContactNumber(forms.Form):
+    contact_number = forms.IntegerField()

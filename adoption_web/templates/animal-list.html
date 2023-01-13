@@ -14,10 +14,29 @@
     {% for animal in adoptions %}
     <div class="card text-bg-dark mb-3 card border-danger mb-3" style="max-width: 16rem;",>     
         <div class="card-body">     
+        <h3 class="card-header"  style="color:rgb(254, 150, 149)"> 
+            <p> "{{animal.name}}" </p>
+        </h3>
 
-        <p>Su nombre es: {{animal.name}} </p>     
-        <p>Su edad es: {{animal.age}} años</p>    
-        <p>Es un/una {{animal.breed}} </p> 
+        {% if animal.baby == False %}
+            {% if animal.age == 1 %}
+                <p>Su edad es: {{animal.age}} año</p>
+            {% else %}
+                <p>Su edad es: {{animal.age}} años</p>
+            {% endif %}
+        {% else %}
+            {% if animal.age == 1 %}
+                <p>Su edad es: {{animal.age}} mes</p>
+            {% else %}
+                <p>Su edad es: {{animal.age}} meses</p>
+            {% endif %}
+        {% endif %}
+
+        {% if animal.gender == "Macho" %}
+            <p>Es un {{animal.breed}} macho</p>
+        {% else %}
+            <p>Es una {{animal.breed}} hembra</p>
+        {% endif %}
 
         {% if animal.exotic == True %}
         <p> Cuidado, es un animal exótico. </p>
@@ -30,9 +49,11 @@
         {% else %}
         <p>¡Ya fue adoptado!</p>
         {% endif %}
-
+        
+        <a href="/adopted/" class="btn btn-dark btn-outline-light">Adoptar</a>
         </div>
     </div>
     {% endfor %}
+
 
 {% endblock %}

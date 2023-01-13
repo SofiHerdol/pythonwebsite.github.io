@@ -10,7 +10,12 @@
     {% if form %}
         <form action="" method="POST">
             {% csrf_token %}
-            {{form.as_table}}
+            <p> Nombre: {{form.name}} </p>
+            <p> Edad: {{form.age}} </p>
+            <p> Género: {{form.gender}} </p>
+            <p> Raza: {{form.breed}} </p>
+            <p> ¿Es exótico? {{form.exotic}} </p>
+            <p> ¿Tiene menos de un año? {{form.baby}} </p>
             <input type="submit" value="Crear Aviso">
         </form>
     {% endif %}

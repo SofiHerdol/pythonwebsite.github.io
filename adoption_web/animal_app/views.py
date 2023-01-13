@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from animal_app.forms import AnimalForm, ShelterForm, PersonForm
-from animal_app.models import Animals, AnimalShelter, Person
+from animal_app.forms import AnimalForm, ShelterForm, PersonForm, NewContactNumber
+from animal_app.models import Animals, AnimalShelter, Person, ContactNumber
 # Create your views here.
 
 
@@ -119,8 +119,28 @@ def profile_list(request):
     }
     return render(request, "profile-list.html", context = context)
 
-
-
+def contact_number(request):
+    if request.method == "GET":
+        context = {
+            "form": NewContactNumber()
+        }
+        return render(request, "adopted.html", context=context)
+    elif request.method == "POST":
+        form = NewContactNumber(request.POST)
+        if form.is_valid():
+            ContactNumber.objects.create(
+                contact_number = form.cleaned_data["contact_number"],
+            )
+            context = {
+                "message": "¡En breves nos estaremos comunicando con vos para darte más información!"
+            }
+            return render(request, "adopted.html", context=context)
+        else:
+            context = {
+                "form_errors": form.errors,
+                "form": NewContactNumber()
+            }
+            return render(request, "adopted.html", context=context)
 
 
 

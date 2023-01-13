@@ -10,7 +10,11 @@
     {% if form %}
         <form action="" method="POST">
             {% csrf_token %}
-            {{form.as_table}}
+            <p> Nombre: {{form.name}} </p>
+            <p> Edad: {{form.age}} </p>
+            <p> DNI: {{form.dni}} </p>
+            <p> Tipo de casa: {{form.house_type}} </p>
+            <p> Número de contacto (opcional): {{form.contact_number}} </p>
             <input type="submit" value="Crear Perfil">
         </form>
     {% endif %}

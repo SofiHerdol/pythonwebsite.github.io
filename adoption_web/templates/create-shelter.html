@@ -10,7 +10,12 @@
     {% if form %}
         <form action="" method="POST">
             {% csrf_token %}
-            {{form.as_table}}
+            <p> Nombre: {{form.name}} </p> 
+            <p> Calle: {{form.street}} </p> 
+            <p> Altura: {{form.number}} </p> 
+            <p> Código postal: {{form.postal_code}} </p> 
+            <p> Provincia: {{form.province}} </p> 
+            <p> Tipo de refugio: {{form.shelter_type}} </p> 
             <input type="submit" value="Crear Refugio">
         </form>
     {% endif %}

@@ -5,6 +5,7 @@ from django.db import models
 class Animals(models.Model):
     name = models.CharField(max_length=100)
     age = models.IntegerField()
+    gender = models.CharField(max_length=100)
     adopted = models.BooleanField(default=True)
     breed = models.CharField(max_length=100)
     exotic = models.BooleanField(default=False)
@@ -29,7 +30,13 @@ class Person(models.Model):
     age = models.IntegerField()
     dni = models.IntegerField()
     house_type = models.CharField(max_length=50)
+    contact_number = models.IntegerField()
 
+    def __str__(self):
+        return self.name
+
+class ContactNumber(models.Model):
+    contact_number = models.IntegerField()
 
     def __str__(self):
         return self.name
