@@ -30,7 +30,6 @@ class Person(models.Model):
     age = models.IntegerField()
     dni = models.IntegerField()
     house_type = models.CharField(max_length=50)
-    contact_number = models.IntegerField()
 
     def __str__(self):
         return self.name
