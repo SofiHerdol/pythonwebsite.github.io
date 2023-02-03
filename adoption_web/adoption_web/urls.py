@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from animal_app.views import animal_list, put_up_for_adoption, create_shelter, shelter_list, create_profile, profile_list, contact_number
 from adoption_web.views import index_hi
-
+from animal_app.models import AnimalDelete
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", index_hi, name="index"),
@@ -28,4 +28,5 @@ urlpatterns = [
     path("create-profile/", create_profile),
     path("profile-list/", profile_list),
     path("adopted/", contact_number),
+    path("delete-animal/<int:pk>/", AnimalDelete.as_view()),
 ]
