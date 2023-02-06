@@ -1,5 +1,5 @@
 from django.db import models
-from django.views.generic import UpdateView, DeleteView
+
 # Create your models here.
 
 class Animals(models.Model):
@@ -40,7 +40,3 @@ class ContactNumber(models.Model):
     def __str__(self):
         return self.name
 
-class AnimalDelete(DeleteView):
-    model = Animals
-    template_name = "/delete-animal/"
-    success_url = "/animal-list/"

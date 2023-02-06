@@ -15,9 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from animal_app.views import animal_list, put_up_for_adoption, create_shelter, shelter_list, create_profile, profile_list, contact_number
+from animal_app.views import animal_list, put_up_for_adoption, create_shelter, shelter_list, create_profile, profile_list, contact_number, AnimalDelete, AnimalUpdate
 from adoption_web.views import index_hi
-from animal_app.models import AnimalDelete
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", index_hi, name="index"),
@@ -29,4 +28,5 @@ urlpatterns = [
     path("profile-list/", profile_list),
     path("adopted/", contact_number),
     path("delete-animal/<int:pk>/", AnimalDelete.as_view()),
+    path("update-animal/<int:pk>", AnimalUpdate.as_view()),
 ]

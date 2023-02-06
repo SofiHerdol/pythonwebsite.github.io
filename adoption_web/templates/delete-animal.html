@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    confirmacion de borrado
+    Eliminación de Animal
 {% endblock %}
 
 {% block content %}
 
-<div class="text-light">
+<div class="text-dark">
     <h2>Aviso a borrar:</h2>
     <h1 class="text-danger">{{object.name}}</h1>
     <h3 class="text-danger">{{object.age}} años, {{object.breed}}</h3>
-    <p>Seguro que desea eliminarlo?</p>
+    <h2>Seguro que desea eliminarlo?</h2>
 
     <form action="" method="POST">
         {% csrf_token %}

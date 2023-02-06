@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Actualización
+{% endblock %}
+
+{% block content %}
+
+{% if form %}
+    <form class="text-dark" method="POST">
+        {% csrf_token %}
+        <table>
+            {{form.as_table}}
+        </table>
+        <input type="submit" value="Actualizar">
+    </form>
+{% endif %}
+
+{% if form_errors %}
+<h2 style="color: red;"> Errores: </h2>
+{{form_errors}}
+{% endif %}
+
+{% endblock %}

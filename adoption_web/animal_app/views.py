@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from animal_app.forms import AnimalForm, ShelterForm, PersonForm, NewContactNumber
 from animal_app.models import Animals, AnimalShelter, Person, ContactNumber
+from django.views.generic import UpdateView, DeleteView
 # Create your views here.
 
 
@@ -142,8 +143,16 @@ def contact_number(request):
             }
             return render(request, "adopted.html", context=context)
 
+class AnimalDelete(DeleteView):
+    model = Animals
+    template_name = "delete-animal.html"
+    success_url = "/animal-list/"
 
-
+class AnimalUpdate(UpdateView):
+    model = Animals
+    fields = ["name", "age", "breed", "gender", "adopted", "exotic", "baby"]
+    template_name = "update-animal.html"
+    success_url = "/animal-list/"
 
 
 
