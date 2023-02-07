@@ -1,4 +1,6 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 class AnimalForm(forms.Form):
     gender_choices = (
@@ -39,3 +41,13 @@ class PersonForm(forms.Form):
 
 class NewContactNumber(forms.Form):
     contact_number = forms.IntegerField()
+
+class UserRegisterForm(UserCreationForm):
+    email = forms.EmailField()
+    password1 = forms.CharField(label="Contraseña", widget=forms.PasswordInput)
+    password2 = forms.CharField(label="Repetir contraseña", widget=forms.PasswordInput)
+
+    class Meta:
+        model = User
+        fields = ["Username", "Email", "Password1", "Password2"]
+        help_texts = {k:"" for k in fields}

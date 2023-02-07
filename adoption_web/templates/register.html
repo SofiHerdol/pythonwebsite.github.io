@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Inicio
+{% endblock %}
+
+{% block content %}
+<div class="card text-bg-dark mb-3 card border-light mb-3">
+    <div class="card-body">
+        <h1 style="text-align:center;">¡Regístrate!</h1>
+    </div>
+</div>
+
+<form action="" method="POST">
+    {% csrf_token %}
+
+    {{form.as_p}}
+
+    <button type="submit">¡Crear cuenta!</button>
+</form>
+
+{% endblock %}
