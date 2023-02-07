@@ -203,8 +203,24 @@ def register(request):
         form = UserRegisterForm
     return render(request, "register.html", {"form":form})
 
+def profile_edit(request):
+    username = request.user
 
+    if request.method == "POST":
+        myform = UserEditForm(request.POST)
+        if myform.is_valid:
+            info = myform.cleaned_data
 
+            username.email = info["email"]
+            username.password1 = info["password1"]
+            username.password2 = info["password2"]
+            username.save()
+
+            return render(request, "index.html")
+    
+    else:
+        myform = UserEditForm(initial={"email":username.email})
+    return render(request, "profile-edit.html", {"myform":myform, "username":username})
 
 
 

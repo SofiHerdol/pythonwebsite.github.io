@@ -18,33 +18,53 @@
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <a href=""><img src="https://i.ibb.co/VVpN3y7/ahorasihappypaws.png" alt="ahorasihappypaws" width="60" height="60" /></a>
                 <div class="container-fluid">
-                <a class="navbar-brand" href="/">HappyPaws</a>
+                <a class="navbar-brand" href="/" style="margin-bottom:5px; margin-left:-5px;">HappyPaws</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/animal-list/">Animales en adopción</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Animales
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/animal-list/">Lista de animales</a></li>
+                                <li><a class="dropdown-item" href="/putup-adoption/">Crear un aviso</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Refugios
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/shelter-list/">Lista de refugios</a></li>
+                                <li><a class="dropdown-item" href="/create-shelter/">Crear un refugio</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Perfiles
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/profile-list/">Lista de perfiles</a></li>
+                                <li><a class="dropdown-item" href="/create-profile/">Crear un perfil</a></li>
+                            </ul>
+                        </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: rgb(252, 135, 135); margin-bottom:5px; margin-top:0px; margin-right:50px; font-style:italic;">
+                            {{request.user.username}}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/login/">Iniciar Sesión</a></li>
+                            <li><a class="dropdown-item" href="/register/">Registrarse</a></li>
+                            <li><a class="dropdown-item" href="/logout/">Cerrar Sesión</a></li>
+                        </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/putup-adoption/">Crear un aviso</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/shelter-list/">Lista de Refugios</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/create-shelter/">Crear Refugio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/profile-list/">Lista de Perfiles</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/create-profile/">Crear Perfil</a>
-                    </li>
-                    </ul>
+
                     <form class="d-flex" role="search" action="/animal-list/" method="GET">
-                    <input class="form-control me-2" type="search" placeholder="Buscar Animales" aria-label="Search" name="search">
+                    <input class="form-control me-2" type="search" placeholder="Buscar Animales" aria-label="Search" name="search" style="margin-left:480px;">
                     <button class="btn btn-outline-light" type="submit" style="color:rgb(254, 150, 149)">Buscar</button>
                     </form>
                 </div>
