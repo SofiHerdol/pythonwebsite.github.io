@@ -161,16 +161,16 @@ def login_request(request):
         form = AuthenticationForm(request, data = request.POST)
 
         if form.is_valid():
-            username = form.cleaned_data.get("Username")
-            password = form.cleaned_data.get("Password")
+            username = form.cleaned_data.get("username")
+            password = form.cleaned_data.get("password")
 
-            user = authenticate(Username=username, Password=password)
+            user = authenticate(username=username, password=password)
 
 
             if user is not None:
                 login(request, user)
 
-                return render(request, "index.html", {"mensaje":f"Bienvenidx, {username}"})
+                return render(request, "index.html", {"mensaje":f"¡Bienvenidx, {username}!"})
             else:
                 return render(request, "index.html", {"mensaje":f"¡Ups! Datos incorrectos :("})
         
@@ -193,7 +193,10 @@ def register(request):
         form = UserRegisterForm(request.POST)
 
         if form.is_valid():
-            username = form.cleaned_data["Username"]
+            form.username = form.cleaned_data["username"]
+            form.email = form.cleaned_data["email"]
+            form.password1 = form.cleaned_data ["password1"]
+            form.password2 = form.cleaned_data ["password2"]
             form.save()
             return render(request, "index.html", {"mensaje":"Usuario creado :)"})
     else:
