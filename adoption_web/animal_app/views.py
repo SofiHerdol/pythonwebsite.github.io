@@ -15,7 +15,7 @@ def put_up_for_adoption(request):
         return render(request, "putup-adoption.html", context=context)
 
     elif request.method == "POST":
-        form = AnimalForm(request.POST)
+        form = AnimalForm(request.POST, request.FILES)
         if form.is_valid():
             Animals.objects.create(
                 name = form.cleaned_data["name"],
@@ -190,7 +190,7 @@ def register(request):
         return render(request, "register.html", context=context)
 
     elif request.method == "POST":
-        form = UserRegisterForm(request.POST)
+        form = UserRegisterForm(request.POST, request.FILES)
 
         if form.is_valid():
             form.username = form.cleaned_data["username"]

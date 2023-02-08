@@ -13,6 +13,7 @@ class AnimalForm(forms.Form):
     breed = forms.CharField(max_length=100)
     exotic = forms.BooleanField(required=False)
     baby = forms.BooleanField(required=False)
+    image = forms.ImageField()
 
 class ShelterForm(forms.Form):
     shelter_choices = (

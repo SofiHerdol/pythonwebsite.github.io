@@ -10,6 +10,7 @@ class Animals(models.Model):
     breed = models.CharField(max_length=100)
     exotic = models.BooleanField(default=False)
     baby = models.BooleanField(default=False)
+    image = models.ImageField(upload_to=('pets/'))
 
     def __str__(self):
         return self.name
