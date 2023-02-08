@@ -52,27 +52,29 @@
                             </ul>
                         </li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: rgb(252, 135, 135); margin-bottom:5px; margin-top:0px; margin-right:50px; font-style:italic;">
-                            {% if request.user.is_authenticated %}
-                                <img src="{{avatar}}" alt="">
-                                {{request.user.username}}
-                            {% elif not request.user.is_authenticated %}
-                                Sesión
-                            {% endif %}
-                        </a>
-                        <ul class="dropdown-menu">
-                            {% if not request.user.is_authenticated %}
-                            <li><a class="dropdown-item" href="/login/">Iniciar Sesión</a></li>
-                            <li><a class="dropdown-item" href="/register/">Registrarse</a></li>
-                            {% elif request.user.is_authenticated %}
-                            <li><a class="dropdown-item" href="/logout/">Cerrar Sesión</a></li>
-                            {% endif %}
-                        </ul>
-                    </li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/about-us/">Info</a></li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: rgb(252, 135, 135); margin-bottom:5px; margin-top:0px; margin-right:-100px; font-style:italic;">
+                                {% if request.user.is_authenticated %}
+                                    <img src="{{ request.user.image.url }}" alt="" width="20px" height="20px">
+                                    {{request.user.username}}
+                                {% elif not request.user.is_authenticated %}
+                                    Sesión
+                                {% endif %}
+                            </a>
+                            <ul class="dropdown-menu">
+                                {% if not request.user.is_authenticated %}
+                                <li><a class="dropdown-item" href="/login/">Iniciar Sesión</a></li>
+                                <li><a class="dropdown-item" href="/register/">Registrarse</a></li>
+                                {% elif request.user.is_authenticated %}
+                                <li><a class="dropdown-item" href="/logout/">Cerrar Sesión</a></li>
+                                {% endif %}
+                            </ul>
+                        </li>
 
                     <form class="d-flex" role="search" action="/animal-list/" method="GET">
-                    <input class="form-control me-2" type="search" placeholder="Buscar Animales" aria-label="Search" name="search" style="margin-left:480px;">
+                    <input class="form-control me-2" type="search" placeholder="Buscar Animales" aria-label="Search" name="search" style="margin-left:570px;">
                     <button class="btn btn-outline-light" type="submit" style="color:rgb(254, 150, 149)">Buscar</button>
                     </form>
                 </div>
@@ -80,7 +82,6 @@
             </nav>
     </header>
     {% block content %}
-
 
     {% endblock %}
 </body>

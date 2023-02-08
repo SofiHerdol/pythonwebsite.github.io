@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from animal_app.views import animal_list, put_up_for_adoption, create_shelter, shelter_list, create_profile, profile_list, contact_number, AnimalDelete, AnimalUpdate, login_request, register, profile_edit
+from animal_app.views import animal_list, put_up_for_adoption, create_shelter, shelter_list, create_profile, profile_list, contact_number, AnimalDelete, AnimalUpdate, login_request, register, profile_edit, about_us
 from adoption_web.views import index_hi
 from django.contrib.auth.views import LogoutView
 from django.conf import settings
@@ -22,6 +22,7 @@ urlpatterns = [
     path("register/", register, name = "Register"),
     path("logout/", LogoutView.as_view(template_name="logout.html"), name = "Logout"),
     path("profile-edit/", profile_edit, name="Editar Perfil"),
+    path("about-us/", about_us),
 ]
 
 urlpatterns+= static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

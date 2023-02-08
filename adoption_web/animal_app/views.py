@@ -226,7 +226,8 @@ def avatar_url(request):
     icons = Avatar.objects.filter(user=request.user.id)
     return render(request, "index.html", {"avatar":icons[0].image.url})
 
-
+def about_us(request):
+    return render(request, "about_us.html")
 
 
 
