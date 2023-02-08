@@ -15,12 +15,13 @@
     {% if form %}
         <form action="" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <p> Nombre: {{form.name}} </p> 
-            <p> Calle: {{form.street}} </p> 
-            <p> Altura: {{form.number}} </p> 
-            <p> Código postal: {{form.postal_code}} </p> 
-            <p> Provincia: {{form.province}} </p> 
-            <p> Tipo de refugio: {{form.shelter_type}} </p> 
+            <h4> Nombre: {{form.name}} </h4> 
+            <h4> Calle: {{form.street}} </h4> 
+            <h4> Altura: {{form.number}} </h4> 
+            <h4> Código postal: {{form.postal_code}} </h4> 
+            <h4> Provincia: {{form.province}} </h4> 
+            <h4> Tipo de refugio: {{form.shelter_type}} </h4>
+            <h4> Ingresá una imagen: {{form.image}} </h4> 
             <input type="submit" value="Crear Refugio">
         </form>
     {% endif %}

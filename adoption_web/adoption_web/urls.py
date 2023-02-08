@@ -15,7 +15,7 @@ urlpatterns = [
     path("shelter-list/", shelter_list),
     path("create-profile/", create_profile),
     path("profile-list/", profile_list),
-    path("adopted/", contact_number),
+    path("adopted/", register),
     path("delete-animal/<int:pk>/", AnimalDelete.as_view()),
     path("update-animal/<int:pk>", AnimalUpdate.as_view()),
     path("login/", login_request, name = "Login"),

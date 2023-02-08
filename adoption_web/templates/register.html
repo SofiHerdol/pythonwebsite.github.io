@@ -15,9 +15,24 @@
 <form action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
 
-    {{form.as_p}}
+    <h4> Usuario: {{form.username}} </h4>
+    <h4> Nombre Completo: {{form.name}} </h4>
+    <h4> Email: {{form.email}} </h4>
+    <h4> Edad: {{form.age}} </h4>
+    <h4> DNI: {{form.dni}} </h4>
+    <h4> Tipo de casa: {{form.house_type}} </h4>
+    <h4> Número de contacto: {{form.contact_number}} </h4>
+    <h4> ¡Ingresá una foto tuya! {{form.image}} </h4>
+    <h4> Contraseña: {{form.password1}} </h4>
+    <h4> Repetir contraseña: {{form.password2}} </h4>
 
     <button type="submit">¡Crear cuenta!</button>
 </form>
+
+{% if errors %}
+
+<h1 style="color: red;" >{{errors}}</h1>
+
+{% endif %}
 
 {% endblock %}

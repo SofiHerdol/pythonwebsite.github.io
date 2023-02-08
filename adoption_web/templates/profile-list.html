@@ -13,26 +13,36 @@
     </div>
 </div> 
 
-<div class="card text-bg-dark mb-3 card border-light mb-3" style="max-width: 30rem; margin-left: 30%;">
+<div class="card text-bg-dark mb-3 card border-light mb-3" style="max-width: 30rem; margin-left: 32%;">
     <div class="card-body">
-        <h2 style="text-align:center;"> Agregar nuevo perfil</h2>   
-        <a href="/create-profile/" class="btn btn-dark btn-outline-light" style="text-align: center; margin-left: 42%;">Crear</a> 
+        <h2 style="text-align:center;"> Crear nuevo perfil</h2>   
+        <a href="/register/" class="btn btn-dark btn-outline-light" style="text-align: center; margin-left: 42%;">Crear</a> 
     </div>
 </div> 
 
-    <p></p>
-    
+<div style="height: auto;
+display: flex !important; 
+flex-wrap: wrap;
+color: black;
+gap: 3rem;
+padding-left: 1.5rem;
+padding-right: 1.5rem;
+padding-top: 1.5rem;">
     {% for profile in profiles %}
-    <div class="card text-bg-dark mb-3 card border-danger mb-3" style="max-width: 16rem;">     
-        <div class="card-body">     
-
-        <p> Nombre: {{profile.name}} </p>     
-        <p> Edad: {{profile.age}} años</p>      
-        <p> DNI: {{profile.dni}} </p>   
-        <p> Tiene: {{profile.house_type}} </p>   
-
+    <div class="card text-bg-dark mb-3 card border-danger mb-3" style="max-width: 18rem; ">     
+        <div class="card-body">
+        <h4 class="card-header"  style="color:rgb(254, 150, 149); text-align: center;">     
+        <img src="{{profile.image.url}}" alt="" style="width: 100%; height: 100%; object-fit: cover; ">
+        <p> </p> 
+        {{profile.name}}    
+        </h4>
         </div>
+        <h5 style="text-align: center;">
+        <p> Edad: {{profile.age}} años</p>        
+        <p> Tiene: {{profile.house_type}} </p>   
+        </h5>
     </div>
     {% endfor %}
+</div>
 
 {% endblock %}

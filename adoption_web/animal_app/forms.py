@@ -27,8 +27,9 @@ class ShelterForm(forms.Form):
     postal_code = forms.FloatField()
     province = forms.CharField(max_length=100)
     shelter_type = forms.ChoiceField(choices=shelter_choices)
+    image = forms.ImageField()
 
-class PersonForm(forms.Form):
+class UserUpdateForm(forms.Form):
     house_choices = (
         ("Casa" , "Casa"),
         ("Departamento" , "Departamento"),
@@ -44,14 +45,21 @@ class NewContactNumber(forms.Form):
     contact_number = forms.IntegerField()
 
 class UserRegisterForm(UserCreationForm):
-    username = forms.CharField(label="Usuario")
-    email = forms.EmailField(label="Email")
-    password1 = forms.CharField(label="Contraseña", widget=forms.PasswordInput)
-    password2 = forms.CharField(label="Repetir contraseña", widget=forms.PasswordInput)
+    house_choices = (
+        ("Casa" , "Casa"),
+        ("Departamento" , "Departamento"),
+        ("Otro", "Otro"),
+    )
+    name = forms.CharField(max_length=100)
+    age = forms.IntegerField()
+    dni = forms.IntegerField()
+    house_type = forms.ChoiceField(choices=house_choices)
+    contact_number = forms.IntegerField(required=False)
+    image = forms.ImageField()
 
     class Meta:
         model = User
-        fields = ["username", "email", "password1", "password2"]
+        fields = ["username", "name", "email",  "age", "dni", "house_type", "contact_number", "image", "password1", "password2"]
         help_texts = {k:"" for k in fields}
 
 class UserEditForm(UserCreationForm):

@@ -22,28 +22,19 @@ class AnimalShelter(models.Model):
     postal_code = models.IntegerField()
     province = models.CharField(max_length=100)
     shelter_type = models.CharField(max_length=50)
+    image = models.ImageField(upload_to='shelters/', default="default.jpg")
 
     def __str__(self):
         return self.name
 
-class Person(models.Model):
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name = "profile")
     name = models.CharField(max_length=100)
     age = models.IntegerField()
     dni = models.IntegerField()
     house_type = models.CharField(max_length=50)
-
-    def __str__(self):
-        return self.name
-
-class ContactNumber(models.Model):
+    image = models.ImageField(upload_to="profile_images/", null=True, blank=True)
     contact_number = models.IntegerField()
 
     def __str__(self):
         return self.name
-
-class Avatar(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="avatar")
-    image = models.ImageField(upload_to="icons", null=True, blank=True)
-
-    def __str__(self) -> str:
-        return f"{self.user} - {self.image}"

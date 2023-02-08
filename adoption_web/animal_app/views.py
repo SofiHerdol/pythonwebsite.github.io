@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from animal_app.forms import AnimalForm, ShelterForm, PersonForm, NewContactNumber, UserRegisterForm, UserEditForm
-from animal_app.models import Animals, AnimalShelter, Person, ContactNumber, Avatar
+from animal_app.forms import AnimalForm, ShelterForm, UserUpdateForm, NewContactNumber, UserRegisterForm, UserEditForm
+from animal_app.models import Animals, AnimalShelter, UserProfile, ContactNumber
 from django.views.generic import UpdateView, DeleteView
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
@@ -54,7 +54,7 @@ def create_shelter(request):
         }
         return render(request, "create-shelter.html", context=context)
     elif request.method == "POST":
-        form = ShelterForm(request.POST)
+        form = ShelterForm(request.POST, request.FILES)
         if form.is_valid():
             AnimalShelter.objects.create(
                 name = form.cleaned_data["name"],
@@ -63,6 +63,7 @@ def create_shelter(request):
                 postal_code = form.cleaned_data["postal_code"],
                 province = form.cleaned_data["province"],
                 shelter_type = form.cleaned_data["shelter_type"],
+                image = form.cleaned_data["image"],
             )
             context = {
                 "message": "¡Refugio creado!"
@@ -89,13 +90,13 @@ def shelter_list(request):
 def create_profile(request):
     if request.method == "GET":
         context = {
-            "form": PersonForm()
+            "form": UserProfileForm()
         }
         return render(request, "create-profile.html", context=context)
     elif request.method == "POST":
-        form = PersonForm(request.POST)
+        form = UserProfileForm(request.POST)
         if form.is_valid():
-            Person.objects.create(
+            UserProfile.objects.create(
                 name = form.cleaned_data["name"],
                 age = form.cleaned_data["age"],
                 dni= form.cleaned_data["dni"],
@@ -108,16 +109,16 @@ def create_profile(request):
         else:
             context = {
                 "form_errors": form.errors,
-                "form": PersonForm()
+                "form": UserProfileForm()
             }
             return render(request, "create-profile.html", context=context)
 
 def profile_list(request):
     if "search" in request.GET:
         search = request.GET["search"]
-        all_profiles = Person.objects.filter(name_icontains=search)
+        all_profiles = UserProfile.objects.filter(name_icontains=search)
     else:
-        all_profiles= Person.objects.all()
+        all_profiles= UserProfile.objects.all()
     context = {
         "profiles":all_profiles,
     }
@@ -194,34 +195,20 @@ def register(request):
         form = UserRegisterForm(request.POST, request.FILES)
 
         if form.is_valid():
-            form.username = form.cleaned_data["username"]
-            form.email = form.cleaned_data["email"]
-            form.password1 = form.cleaned_data ["password1"]
-            form.password2 = form.cleaned_data ["password2"]
-            form.save()
+            user = form.save()
+            UserProfile.objects.create(
+                user=user,
+                name=form.cleaned_data["name"],
+                age=form.cleaned_data["age"],
+                dni=form.cleaned_data["dni"],
+                house_type=form.cleaned_data["house_type"],
+                contact_number=form.cleaned_data["contact_number"],
+                image=form.cleaned_data["image"],
+                )
             return render(request, "index.html", {"mensaje":"Usuario creado :)"})
     else:
         form = UserRegisterForm
-    return render(request, "register.html", {"form":form})
-
-def profile_edit(request):
-    username = request.user
-
-    if request.method == "POST":
-        myform = UserEditForm(request.POST)
-        if myform.is_valid:
-            info = myform.cleaned_data
-
-            username.email = info["email"]
-            username.password1 = info["password1"]
-            username.password2 = info["password2"]
-            username.save()
-
-            return render(request, "index.html")
-    
-    else:
-        myform = UserEditForm(initial={"email":request.user.email})
-    return render(request, "profile-edit.html", {"myform":myform, "username":username})
+    return render(request, "register.html", {"form":form, "errors": form.errors,})
 
 def about_us(request):
     return render(request, "about_us.html")

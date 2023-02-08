@@ -15,13 +15,13 @@
     {% if form %}
         <form action="" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <p> Nombre: {{form.name}} </p>
-            <p> Edad: {{form.age}} </p>
-            <p> Género: {{form.gender}} </p>
-            <p> Raza: {{form.breed}} </p>
-            <p> ¿Es exótico? {{form.exotic}} </p>
-            <p> ¿Tiene menos de un año? {{form.baby}} </p>
-            <p> Insertá una imagen: {{form.image}} </p>
+            <h4> Nombre: {{form.name}} </h4>
+            <h4> Edad: {{form.age}} </h4>
+            <h4> Género: {{form.gender}} </h4>
+            <h4> Raza: {{form.breed}} </h4>
+            <h4> ¿Es exótico? {{form.exotic}} </h4>
+            <h4> ¿Tiene menos de un año? {{form.baby}} </h4>
+            <h4> Insertá una imagen: {{form.image}} </h4>
             <input type="submit" value="Crear Aviso">
         </form>
     {% endif %}
