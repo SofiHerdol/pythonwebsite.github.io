@@ -12,21 +12,13 @@
     </div>
 </div> 
 
-    {% if form %}
-        <form action="" method="POST">
-            {% csrf_token %}
-            <p> Por favor, confirme su número de teléfono: {{form.contact_number}} </p>
-            <input type="submit" value="Confirmar número">
-        </form>
+    {% if request.user.is_authenticated %}
+    <div class="card text-bg-dark mb-3 card border-light mb-3" style="max-width: 65rem; text-align: center;  margin-left: 12%;">
+        <h3 style="color: rgb(243, 116, 116)"> ¡En breves nos estaremos comunicando con vos! </h3>
+    </div>
+    {% elif not request.user.is_authenticated %}
+    <div class="card text-bg-dark mb-3 card border-light mb-3" style="max-width: 65rem; text-align: center;  margin-left:12%;">
+        <h3 style="color: rgb(243, 116, 116)"> Por favor, para poder comunicarnos con usted, inicie sesión. </h3>
+    </div>
     {% endif %}
-
-    {% if form_errors %}
-    <h2 style="color: red;"> Errores: </h2>
-    {{form_errors}}
-    {% endif %}
-
-    {% if message %}
-        <h2 style="color: green;"> {{message}} </h2>
-    {% endif %}
-
 {% endblock %}

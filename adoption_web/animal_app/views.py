@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from animal_app.forms import AnimalForm, ShelterForm, UserUpdateForm, NewContactNumber, UserRegisterForm, UserEditForm
-from animal_app.models import Animals, AnimalShelter, UserProfile, ContactNumber
+from animal_app.forms import AnimalForm, ShelterForm, UserUpdateForm, UserRegisterForm, UserEditForm
+from animal_app.models import Animals, AnimalShelter, UserProfile
 from django.views.generic import UpdateView, DeleteView
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
@@ -87,32 +87,6 @@ def shelter_list(request):
     }
     return render(request, "shelter-list.html", context = context)
 
-def create_profile(request):
-    if request.method == "GET":
-        context = {
-            "form": UserProfileForm()
-        }
-        return render(request, "create-profile.html", context=context)
-    elif request.method == "POST":
-        form = UserProfileForm(request.POST)
-        if form.is_valid():
-            UserProfile.objects.create(
-                name = form.cleaned_data["name"],
-                age = form.cleaned_data["age"],
-                dni= form.cleaned_data["dni"],
-                house_type = form.cleaned_data["house_type"],
-            )
-            context = {
-                "message": "¡Perfil creado!"
-            }
-            return render(request, "create-profile.html", context=context)
-        else:
-            context = {
-                "form_errors": form.errors,
-                "form": UserProfileForm()
-            }
-            return render(request, "create-profile.html", context=context)
-
 def profile_list(request):
     if "search" in request.GET:
         search = request.GET["search"]
@@ -123,29 +97,6 @@ def profile_list(request):
         "profiles":all_profiles,
     }
     return render(request, "profile-list.html", context = context)
-
-def contact_number(request):
-    if request.method == "GET":
-        context = {
-            "form": NewContactNumber()
-        }
-        return render(request, "adopted.html", context=context)
-    elif request.method == "POST":
-        form = NewContactNumber(request.POST)
-        if form.is_valid():
-            ContactNumber.objects.create(
-                contact_number = form.cleaned_data["contact_number"],
-            )
-            context = {
-                "message": "¡En breves nos estaremos comunicando con vos para darte más información!"
-            }
-            return render(request, "adopted.html", context=context)
-        else:
-            context = {
-                "form_errors": form.errors,
-                "form": NewContactNumber()
-            }
-            return render(request, "adopted.html", context=context)
 
 class AnimalDelete(DeleteView):
     model = Animals
@@ -213,7 +164,8 @@ def register(request):
 def about_us(request):
     return render(request, "about_us.html")
 
-
+def adopted(request):
+    return render(request, "adopted.html")
 
 
 

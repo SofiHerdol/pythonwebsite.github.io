@@ -41,9 +41,6 @@ class UserUpdateForm(forms.Form):
     house_type = forms.ChoiceField(choices=house_choices)
     contact_number = forms.IntegerField(required=False)
 
-class NewContactNumber(forms.Form):
-    contact_number = forms.IntegerField()
-
 class UserRegisterForm(UserCreationForm):
     house_choices = (
         ("Casa" , "Casa"),
@@ -59,7 +56,7 @@ class UserRegisterForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ["username", "name", "email",  "age", "dni", "house_type", "contact_number", "image", "password1", "password2"]
+        fields = ["username", "name", "email",  "age", "dni", "house_type", "contact_number", "image","password1", "password2"]
         help_texts = {k:"" for k in fields}
 
 class UserEditForm(UserCreationForm):
