@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
 
 class Animals(models.Model):
@@ -40,3 +40,9 @@ class ContactNumber(models.Model):
     def __str__(self):
         return self.name
 
+class Avatar(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to="icons", null=True, blank=True)
+
+    def __str__(self) -> str:
+        return f"{self.user} - {self.image}"

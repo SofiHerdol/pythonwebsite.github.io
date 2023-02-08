@@ -54,12 +54,20 @@
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: rgb(252, 135, 135); margin-bottom:5px; margin-top:0px; margin-right:50px; font-style:italic;">
-                            {{request.user.username}}
+                            {% if request.user.is_authenticated %}
+                                <img src="{{avatar}}" alt="">
+                                {{request.user.username}}
+                            {% elif not request.user.is_authenticated %}
+                                Sesión
+                            {% endif %}
                         </a>
                         <ul class="dropdown-menu">
+                            {% if not request.user.is_authenticated %}
                             <li><a class="dropdown-item" href="/login/">Iniciar Sesión</a></li>
                             <li><a class="dropdown-item" href="/register/">Registrarse</a></li>
+                            {% elif request.user.is_authenticated %}
                             <li><a class="dropdown-item" href="/logout/">Cerrar Sesión</a></li>
+                            {% endif %}
                         </ul>
                     </li>
 

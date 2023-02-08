@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from animal_app.forms import AnimalForm, ShelterForm, PersonForm, NewContactNumber, UserRegisterForm
-from animal_app.models import Animals, AnimalShelter, Person, ContactNumber
+from animal_app.forms import AnimalForm, ShelterForm, PersonForm, NewContactNumber, UserRegisterForm, UserEditForm
+from animal_app.models import Animals, AnimalShelter, Person, ContactNumber, Avatar
 from django.views.generic import UpdateView, DeleteView
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
@@ -219,10 +219,12 @@ def profile_edit(request):
             return render(request, "index.html")
     
     else:
-        myform = UserEditForm(initial={"email":username.email})
+        myform = UserEditForm(initial={"email":request.user.email})
     return render(request, "profile-edit.html", {"myform":myform, "username":username})
 
-
+def avatar_url(request):
+    icons = Avatar.objects.filter(user=request.user.id)
+    return render(request, "index.html", {"avatar":icons[0].image.url})
 
 
 
