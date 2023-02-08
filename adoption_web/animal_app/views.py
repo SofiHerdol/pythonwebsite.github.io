@@ -23,6 +23,7 @@ def put_up_for_adoption(request):
                 breed = form.cleaned_data["breed"],
                 exotic = form.cleaned_data["exotic"],
                 baby = form.cleaned_data["baby"],
+                image = form.cleaned_data["image"],
             )
             context = {
                 "message": "¡Aviso creado!"
@@ -221,10 +222,6 @@ def profile_edit(request):
     else:
         myform = UserEditForm(initial={"email":request.user.email})
     return render(request, "profile-edit.html", {"myform":myform, "username":username})
-
-def avatar_url(request):
-    icons = Avatar.objects.filter(user=request.user.id)
-    return render(request, "index.html", {"avatar":icons[0].image.url})
 
 def about_us(request):
     return render(request, "about_us.html")

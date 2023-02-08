@@ -42,7 +42,7 @@ class ContactNumber(models.Model):
         return self.name
 
 class Avatar(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="avatar")
     image = models.ImageField(upload_to="icons", null=True, blank=True)
 
     def __str__(self) -> str:
